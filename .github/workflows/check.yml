@@ -7,8 +7,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
       - name: Setup pnpm
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v3
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -17,9 +19,15 @@ jobs:
 
       - name: 📦 Install dependencies
         run: pnpm install
+
       - name: 🔎 Lint
         run: pnpm lint
+
+      - name: 🔎 Check formatting
+        run: pnpm format:check
+
       - name: 🚨 Run tests
         run: pnpm test
-      - name: ⚒️ Build
+
+      - name: 🛠️ Build
         run: pnpm build
