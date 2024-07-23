@@ -1,7 +1,7 @@
 {
   "name": "template-node",
   "version": "0.0.1",
-  "packageManager": "pnpm@9.4.0",
+  "packageManager": "pnpm@9.6.0",
   "type": "module",
   "license": "MIT",
   "main": "./dist/index.cjs",
@@ -18,7 +18,7 @@
     "build": "tsup src/index.ts --format cjs,esm --dts --clean",
     "watch": "pnpm run build --watch src",
     "test": "vitest",
-    "lint": "eslint src --ignore-path .gitignore",
+    "lint": "eslint src",
     "lint:fix": "pnpm run lint --fix",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
@@ -26,22 +26,25 @@
     "preinstall": "npx only-allow pnpm"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^7.14.1",
-    "@typescript-eslint/parser": "^7.14.1",
+    "@eslint/js": "^9.7.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
+    "globals": "^15.8.0",
     "lint-staged": "^15.2.7",
-    "prettier": "^3.3.2",
+    "prettier": "^3.3.3",
     "simple-git-hooks": "^2.11.1",
-    "tsup": "^8.1.0",
-    "typescript": "~5.5.2",
-    "vitest": "^1.6.0"
+    "tsup": "^8.2.2",
+    "typescript": "~5.5.4",
+    "typescript-eslint": "^7.17.0",
+    "vitest": "^2.0.4"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"
   },
   "lint-staged": {
-    "*": "prettier --write -u",
-    "*.ts": "eslint --fix --ignore-path .gitignore"
+    "*": [
+      "prettier --write -u",
+      "eslint --fix"
+    ]
   }
 }
